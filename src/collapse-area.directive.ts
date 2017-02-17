@@ -42,12 +42,12 @@ export class CollapseAreaDirective implements OnInit {
         if (!this.emitter) {
             this.emitter = new EventEmitter();
         }
-        this.emitter.subscribe(message => this.toggle(message.state));
+        this.emitter.subscribe((message: any) => this.toggle(message.state));
     }
     ngOnInit() {
         this.service.addChild(this.areaName, this.emitter);
     }
-    private toggle = (state) => {
+    private toggle = (state: any) => {
         if (
             (state == null && this.isOpen) ||
             (this.isOpen && !state)

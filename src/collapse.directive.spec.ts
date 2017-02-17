@@ -1,8 +1,8 @@
-import {CollapseDirective } from "../../../../src/ng2/core/collapse/collapse.directive";
 import { ElementRef } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import {CollapseAreaDirective} from "./collapse-area.directive";
 import {CollapseService} from "./collapse.service";
+import {CollapseDirective} from "./collapse.directive";
 class MockElementRef extends ElementRef {
     nativeElement = { };
 }
