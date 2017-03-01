@@ -3,6 +3,7 @@ import {
     Directive,
     EventEmitter,
     Input,
+    Output,
     OnInit,
 } from "@angular/core";
 import {CollapseService} from "./collapse.service";
@@ -14,7 +15,7 @@ export class CollapseAreaDirective implements OnInit {
     @Input() areaName: string = "unknown";
     // TODO: Should be enum and should be implemented so it can be used
     isOpen: boolean = false;
-
+    @Output() onToggle: EventEmitter<any> = new EventEmitter();
     emitter: EventEmitter<any>;
 
     @HostBinding('style.overflow')
@@ -53,14 +54,12 @@ export class CollapseAreaDirective implements OnInit {
             (this.isOpen && !state)
         ) {
             this.close();
-            this.isOpen = false;
         }
         else if (
             (state == null && !this.isOpen) ||
             (state && !this.isOpen)
         ) {
             this.open();
-            this.isOpen = true;
         }
         else {
             // TODO: Should be in the same state
@@ -72,6 +71,7 @@ export class CollapseAreaDirective implements OnInit {
         this.minWidth = "0";
         this.minHeight = "0";
         this.isOpen = false;
+        this.onToggle.emit(false);
     }
     private open = () => {
         this.height = "";
@@ -79,5 +79,6 @@ export class CollapseAreaDirective implements OnInit {
         this.minWidth = "";
         this.minHeight = "";
         this.isOpen = true;
+        this.onToggle.emit(true);
     }
 }
